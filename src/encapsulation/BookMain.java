@@ -1,4 +1,4 @@
-package basicoop;
+package encapsulation;
 
 public class BookMain {
 
@@ -10,14 +10,15 @@ public class BookMain {
         book1.printInfo();
         book2.printInfo();
 
+        book1.setPrice(-50);
+
+        // Using constructor
+        Book book3 = new Book("Khom Khlang", "Luxurious.W", -499, true);
+
         book1.borrow();
-        book1.printInfo();
+        book1.borrow();
 
         book1.returnBook();
-        book1.printInfo();
-
-        double priceWithDisCount = book2.getDiscountPrice(15);
-        book2.printInfo();
-        System.out.println("Price with Discount: " + priceWithDisCount);
+        book1.returnBook();
     }
 }

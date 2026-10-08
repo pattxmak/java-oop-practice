@@ -1,0 +1,19 @@
+Book book = new Book("Harry Potter", "J.K. Rowling", 500, true);
+
+เราสามารถกำหนดค่า price ติดลบ ทำได้แหละแต่ไม่สมเหตุสมผล
+book.price = -999;
+
+ไม่ต้องผ่านการยืมหรือการคืนหนังสือก็กำหนดได้เลย
+book.available = false;
+
+ชื่อหนังสือไม่กำหนดก็ได้ ซึ่งไม่ควรนะ
+book.title = "";
+
+========================================================
+อย่าสร้าง setter ทุก field เพราะยังใส่ค่าติดลบได้ให้ใส่ validation แทน
+public void setPrice(double price) {
+    this.price = price;
+}
+
+Constructor ก็ต้อง validate ด้วย
+
