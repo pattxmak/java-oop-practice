@@ -6,6 +6,10 @@ public class BankAccount {
     private String ownerName;
     private double balance;
 
+    public BankAccount(String accountNumber, String ownerName) {
+        this(accountNumber, ownerName, 0); // call
+    }
+
     public BankAccount(String accountNumber, String ownerName, double balance) {
 
         if (accountNumber == null || accountNumber.isBlank()) {

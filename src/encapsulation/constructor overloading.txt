@@ -1,0 +1,22 @@
+1. Constructor Overloading
+    การมี constructor ชื่อเดียวกัน แต่ parameter ต่างกัน
+2. Validation
+    ถ้ามี constructor หลายๆตัว เราต้องเขียน validate เหมือนกันทุกอัน
+    ถ้าวันหลังเปลี่ยน logic เช่น เลขบัญชีต้องมีอย่างน้อย 4 ตัว เราต้องแก้หลายจุด และเสี่ยงลืมแก้บาง constructor
+3. this
+    การเรียก constructor อีกตัวใน class เดียวกัน
+    ให้ constructor ที่รับข้อมูลน้อยกว่า ส่งต่อไป constructor ที่รับข้อมูลครบกว่า เพื่อจะไม่ต้อง validate ซ้ำอีกรอบ
+    ex. this(accountNumber, ownerName, 0);
+4. this() กับ this.field ไม่เหมือนกัน
+    this.balance คือ field ของ object ปัจจุบัน
+    balance คือ parameter ที่รับเข้ามา
+5. this() ต้องเป็นคำสั่งแรก
+public BankAccount(String accountNumber, String ownerName) {
+    System.out.println("Creating account");
+    this(accountNumber, ownerName, 0); // compile error
+}
+เพราะ Java ต้องสร้าง object ตาม constructor ที่ถูกเรียกให้เสร็จก่อน
+
+6. Constructor ไม่ใช่ method ปกติ
+    -ชื่อเหมือน class
+    -ไม่มี return type เช่น void, String, double

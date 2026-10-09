@@ -19,5 +19,9 @@ public class BankAccountMain {
 
         account2.transferTo(account, 2500);
         account2.transferTo(account, 300);
+
+        BankAccount mildAccount = new BankAccount("005-555-5555", "Mild");
+        System.out.println();
+        mildAccount.printInfo();
     }
 }
