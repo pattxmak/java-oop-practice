@@ -63,10 +63,38 @@ public class BankAccount {
         System.out.println("Your balance is " + balance);
     }
 
-
     public void printInfo(){
         System.out.println("Account NO: " + getAccountNumber());
         System.out.println("Owner Name: " + getOwnerName());
         System.out.println("Balance: " + getBalance());
+    }
+
+    // transfer
+    public void transferTo(BankAccount targetAccount, double amount) {
+
+        if (targetAccount == null) {
+            System.out.println("Target account cannot be null");
+            return;
+        }
+
+        if (this == targetAccount) {
+            System.out.println("You cannot transfer to you own account.");
+            return;
+        }
+
+        if (amount < 0) {
+            System.out.println("Transfer amount must greater than 0");
+            return;
+        }
+
+        if (amount > balance) {
+            System.out.println("Cannot transfer greater than balance.");
+            return;
+        }
+
+        balance -= amount;
+        targetAccount.deposit(amount);
+        System.out.println("Transfer successfully!!!");
+        System.out.println("Current balance: " + balance);
     }
 }
