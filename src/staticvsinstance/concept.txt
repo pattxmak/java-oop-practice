@@ -1,0 +1,68 @@
+private String name;
+private double gpa;
+
+public void updateGpa(double newGpa) {
+    // ...
+}
+สิ่งเหล่านี้เป็นของ object แต่ละตัว เรียกว่า instance field และ instance method
+
+1. instance คือข้อมูลแต่ละตัวของ object
+ex. Student student1 = new Student("S001", "Harry", "CS", 3.20);
+    Student student2 = new Student("S002", "Hermione", "IT", 3.90);
+แต่ละคนมี: studentId, name, major, gpa ของตัวเอง
+ดังนั้น field เหล่านี้ ห้ามเป็น ๒ชstatic เพราะไม่ควรใช้ค่าเดียวกันทุกคน
+
+2. static คือข้อมูลร่วมของ class
+สมมติเราอยากนับว่าในระบบสร้าง Student ไปแล้วกี่คน
+ข้อมูลนี้ไม่ได้เป็นของนักศึกษาคนใดคนหนึ่ง แต่เป็นของ class Student โดยรวม จึงใช้ static
+** ถ้ามี static ให้เรียกผ่านชื่อ class เช่น Student.getTotalStudents()
+
+ex. private static int totalStudents = 0;
+
+    เวลาสร้าง Object
+    public Student(String studentId, String name, String major, double gpa) {
+        // validation...
+
+        this.studentId = studentId;
+        this.name = name;
+        this.major = major;
+        this.gpa = gpa;
+
+        totalStudents++;
+    }
+
+    เรียกดูโดยใช้ชื่อ class ไม่ใช่ object
+    System.out.println(Student.getTotalStudents());
+
+3. Static method
+ex. สร้าง getter รวม
+public static int getTotalStudents() {
+    return totalStudents;
+}
+
+int total = Student.getTotalStudents();
+System.out.println(total);
+
+**ไม่ควร เรียกแบบนี้ แม้ Java อาจยอมให้ทำ
+    student1.getTotalStudents();
+    เพราะ totalStudents ไม่ได้เป็นของ student1 แต่เป็นของ Student ทั้ง class
+
+4. ทำไม static method เข้าถึง instance field ตรง ๆ ไม่ได้
+public static void printStudentName() {
+    System.out.println(name); // error
+}
+เพราะ static method ไม่รู้ว่า name ของ student คนไหน
+
+ex. ตอนเรียก Student.printStudentName();
+ไม่มี object เช่น student1 ถูกส่งเข้ามาให้ method รู้ว่าจะใช้ name ของใคร
+
+5. Constants: static final
+ชื่อ constant นิยมใช้ตัวพิมพ์ใหญ่ และคั่นคำด้วย _
+
+ค่าที่ไม่ควรเปลี่ยนให้ใช้ final
+private final String studentId;
+
+แต่หากเป็นค่าคงที่ที่ทุก object ใช้ร่วมกัน ให้ใช้
+public static final double MAX_GPA = 4.0;
+public static final double MIN_GPA = 0.0;
+

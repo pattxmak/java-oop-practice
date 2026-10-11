@@ -3,11 +3,11 @@ package constructor;
 public class StudentMain {
     public static void main(String[] args) {
 
-        Student student1 = new Student("S001", "Haryy");
+        Student student1 = new Student("S001", "Harry Potter");
 
         Student student2 = new Student("S002", "Gilderoy Lockhart", "Computer Science");
 
-        Student student3 = new Student( "S003","McGonagall ","Information Technology",3.45);
+        Student student3 = new Student( "S003","McGonagall","Information Technology",3.45);
 
 
         student1.printInfo();
@@ -24,9 +24,6 @@ public class StudentMain {
         System.out.println();
         student2.printInfo();
         System.out.println();
-        student3.printInfo();
-        System.out.println();
-
 
     }
 }

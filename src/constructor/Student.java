@@ -8,7 +8,7 @@ public class Student {
     private double gpa;
 
     public Student(String studentId, String name) {
-        this(studentId, name, "Undeclare");
+        this(studentId, name, "Undeclared");
     }
 
     public Student(String studentId, String name, String major) {
