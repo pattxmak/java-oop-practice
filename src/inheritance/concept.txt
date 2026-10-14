@@ -1,0 +1,33 @@
+1. ปัญหาหากไม่มี Inheritance
+สมมติเรามีพนักงาน full time และพนักงาน part time
+ทั้งคู่มีข้อมูลร่วมกัน: employeeId, name
+ถ้าเขียนแยกกันโดยไม่ใช้ inheritance
+จะเกิด code ซ้ำ และหากวันหนึ่งต้องเพิ่ม field เช่น email ก็ต้องแก้ทั้งสอง class
+
+public class FullTimeEmployee {
+    private String employeeId;
+    private String name;
+    // ...
+}
+java
+public class PartTimeEmployee {
+    private String employeeId;
+    private String name;
+    // ...
+}
+
+2. ถ้าลูก extends ไปแล้วและแม่ไม่มี constructor เปล่าจะต้องสร้าง constructor ด้วย ไม่งั้นสร้าง object ไม่ได้
+
+3. super() คือการเรียก Constructor ของ Class แม่
+กฎสำคัญเหมือน this() เลย super() ต้องอยู่เป็นบรรทัดแรกใน constructor
+
+public FullTimeEmployee(String employeeId, String name, double monthlySalary) {
+    super(employeeId, name);
+    this.monthlySalary = monthlySalary; //pass
+}
+
+public FullTimeEmployee(String employeeId, String name, double monthlySalary) {
+    System.out.println("Creating employee");
+    super(employeeId, name); // error
+}
+
