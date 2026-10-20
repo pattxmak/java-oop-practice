@@ -1,0 +1,31 @@
+1. Method overriding คืออะไร
+class ลูกเขียน method ชื่อเดิม, parameter เดิม, และ return type ที่เข้ากันได้กับ class แม่ เพื่อเปลี่ยนหรือขยายพฤติกรรมเดิม
+ex. class แม้
+public void printBasicInfo() {
+    System.out.println("Brand: " + brand);
+    System.out.println("Model: " + model);
+    System.out.println("Year: " + year);
+}
+
+class ลูก
+@Override
+public void printBasicInfo() {
+    // พฤติกรรมใหม่
+}
+
+@Override เป็น annotation --> ถ้าสะกดชื่อ method ผิด Java ฟ้อง error ทันทีเด้อ
+
+2. super.method() เรียก method ที่เป็นเวอร์ชันของ class แม่
+
+3. final ป้องกันการ override
+    หาก class แม่มี method ที่ไม่อยากให้ class ลูกเปลี่ยน behavior ให้ใช้ final
+    เหมาะกับ method ที่เป็นกฎตายตัวและไม่ควรถูกแก้ เช่น:
+        - การสร้างรหัสอ้างอิง
+        - ขั้นตอนสำคัญด้านความปลอดภัย
+        - method ที่ต้องรักษาความถูกต้องของข้อมูล
+
+4. final ใช้ได้ 3 แบบ
+    final variable: เปลี่ยนค่าไม่ได้
+    final method: class ลูก override ไม่ได้
+    final class: สืบทอดไม่ได้
+
