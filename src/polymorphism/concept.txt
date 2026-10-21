@@ -1,0 +1,52 @@
+Polymorphism : ทำให้จัดการ object หลาย subtype ด้วย code เดียวกัน
+
+object ของ class ลูกจึงเก็บในตัวแปรชนิด class แม่ได้
+
+1. ประโยชน์: จัดการ Object หลายประเภทด้วยรูปแบบเดียวกัน
+หากไม่มี polymorphism เราอาจเขียนแบบนี้
+    BasicMember basicMember = new BasicMember("M001", "Aom");
+    PremiumMember premiumMember = new PremiumMember("M002", "Mild", "Gold");
+
+    basicMember.printBenefits();
+    premiumMember.printBenefits();
+
+ยังไม่เห็นประโยชน์มากนัก แต่เมื่อสมาชิกมีหลายคน เราสามารถเก็บรวมกันใน array ชนิด Membership[] ได้
+Membership[] members = {
+        new BasicMember("M001", "Dream"),
+        new PremiumMember("M002", "Mild", "Gold"),
+        new BasicMember("M003", "Beam"),
+        new PremiumMember("M004", "Play", "Platinum")
+};
+
+จากนั้นวนลูปเรียก method เดียวกัน
+    for (Membership member : members) {
+        member.printBenefits();
+        System.out.println();
+    }
+แม้ตัวแปรชื่อ member จะมีชนิดเป็น Membership แต่ Java จะเรียก printBenefits() ของ object จริงที่อยู่ข้างใน
+สิ่งนี้เรียกว่า dynamic dispatch หรือ runtime polymorphism
+
+
+2. สิ่งที่เรียกได้ ขึ้นกับชนิดตัวแปร
+Membership member = new PremiumMember(...);
+member.getPlanName(); // error
+แม้ object จริงจะเป็น PremiumMember เพราะ compiler มองชนิดของตัวแปรว่าเป็น Membership
+หาก PremiumMember มี method เฉพาะ
+
+    public String getPlanName() {
+        return planName;
+    }
+เราต้องใช้ casting เมื่อแน่ใจว่า object นั้นเป็น Premium
+    PremiumMember premiumMember = (PremiumMember) member;
+
+แต่การ cast แบบไม่ตรวจอาจ error ตอนรันได้ จึงควรใช้ instanceof ก่อน
+    if (member instanceof PremiumMember) {
+        PremiumMember premiumMember = (PremiumMember) member;
+        System.out.println(premiumMember.getPlanName());
+    }
+Java รุ่นใหม่เขียนสั้นลงได้
+    if (member instanceof PremiumMember premiumMember) {
+        System.out.println(premiumMember.getPlanName());
+    }
+ดังนั้น หลีกเลี่ยง casting ถ้าออกแบบ method ใน class แม่ได้
+
