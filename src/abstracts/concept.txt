@@ -1,0 +1,7 @@
+1. abstract class
+เป็น class ต้นแบบ ใช้สืบทอดได้ แต่ห้ามสร้าง object โดยตรง
+
+2. Abstract Method
+method ที่ยังไม่มีรายละเอียดการทำงาน
+มีแค่ชื่อ, parameter และ return type ไม่มี { }
+บังคับให้ class ลูกที่ไม่ใช่ abstract ต้อง override method นี้
