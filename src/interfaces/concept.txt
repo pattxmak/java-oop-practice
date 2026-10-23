@@ -1,0 +1,17 @@
+abstract class ใช้สร้าง “ต้นแบบร่วม” ที่มี field, constructor และ method บางส่วนให้ class ลูกใช้ร่วมกันได้
+แต่บางครั้งเราไม่ได้ต้องการข้อมูลร่วมกันเลย เราแค่อยากกำหนดว่า Class นี้ต้องทำความสามารถนี้ได้
+
+ใน interface method จะเป็น public abstract โดยอัตโนมัติ ดังนั้นเขียนเต็มก็ได้ แต่ไม่จำเป็น
+Java class หนึ่ง extends ได้แค่ 1 class แต่ implements interface ได้หลายตัว
+
+Interface มี default method ได้
+ปกติ interface มี method ที่ยังไม่มี implementation แต่ Java รองรับ default method
+    public interface Sendable {
+     void send();
+     default void printStatus() {
+         System.out.println("Notification is ready to send.");
+     }
+    }
+class ที่ implements Sendable จะใช้ printStatus() ได้ทันที
+EmailNotification email = new EmailNotification(...);
+email.printStatus();
