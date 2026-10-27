@@ -1,0 +1,30 @@
+Composition — การประกอบ Object เข้าด้วยกัน (has-a)
+
+Composition คือการนำ Object หนึ่งมาเป็น field ของอีก Object หนึ่ง
+ตัวอย่างในชีวิตจริง
+    รถยนต์ (Car) มี เครื่องยนต์ (Engine) — รถยนต์ไม่ได้เป็นเครื่องยนต์ แต่มันมีเครื่องยนต์
+    บัญชีธนาคาร (BankAccount) มี เจ้าของบัญชี (Owner)
+    คำสั่งซื้อ (Order) มี สินค้าหลายรายการ (ItemList)
+
+1. ปัญหาถ้าไม่ใช้ Composition
+สมมติเราจะสร้างคลาส Car แล้วใส่ข้อมูลทุกอย่างไว้ข้างใน
+    public class Car {
+        private String brand;
+        private String model;
+        private int year;
+
+        // ข้อมูลเครื่องยนต์
+        private String engineType;
+        private int horsepower;
+
+        // ข้อมูลเจ้าของ
+        private String ownerName;
+        private String ownerIdCard;
+    }
+ถ้าคลาสเริ่มใหญ่ขึ้น มีข้อมูลรายละเอียดของเครื่องยนต์เยอะ หรือมีข้อมูลเจ้าของหลายช่อง ข้อมูลจะปนกันมั่วไปหมด (Low Cohesion) และนำข้อมูลเครื่องยนต์ไปใช้ซ้ำกับรถมอเตอร์ไซค์ไม่ได้
+แก้ด้วยการ แยกออกเป็นคลาสอิสระ แล้วนำมาประกอบกัน
+
+2. ข้อดีของ Composition
+- แบ่งแยกหน้าที่ชัดเจน (Separation of Concerns): คลาส Engine ดูแลเรื่องเครื่องยนต์ คลาส Car ดูแลเรื่องตัวรถ
+- นำกลับมาใช้ใหม่ได้ (Reusability): ถ้าวันหนึ่งมี Truck (รถบรรทุก) เราก็ใช้คลาส Engine ตัวเดิมได้เลย ไม่ต้องเขียนโค้ดเครื่องยนต์ใหม่
+- ยืดหยุ่นกว่า Inheritance: การใช้ extends จะผูกมัดคลาสแน่นเกินไป (Tight coupling) แต่ Composition ทำให้เราเปลี่ยนชิ้นส่วนประกอบได้ง่ายกว่า
