@@ -1,0 +1,20 @@
+toString()	สร้างข้อความแทน object
+equals(Object obj)	ตรวจว่า object เท่ากันตามกติกาที่กำหนดหรือไม่
+hashCode()	คืนรหัสจำนวนเต็มที่ใช้ช่วยจัดเก็บและค้นหาในโครงสร้างแบบ hash
+
+
+== กับ equals() ต่างกันอย่างไร
+== ตรวจว่า อ้างอิง object ตัวเดียวกันหรือไม่
+equals() ใช้ตรวจความเท่ากันตามกติกาของ class แต่ ถ้ายังไม่ได้ override พฤติกรรมที่ได้รับจาก Object ก็ตรวจ reference เช่นเดียวกับ ==
+
+Product product1 = new Product("P001", "Keyboard");
+Product product2 = new Product("P001", "Keyboard");
+Product product3 = product1;
+
+product1 ──→ Object A: P001, Keyboard
+product3 ──→ Object A ตัวเดียวกัน
+
+product2 ──→ Object B: P001, Keyboard
+
+System.out.println(product1 == product2); // false
+System.out.println(product1 == product3); // true
