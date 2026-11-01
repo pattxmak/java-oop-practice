@@ -1,0 +1,50 @@
+enum : กำหนดค่าที่เลือกได้เป็นชุดตายตัว
+record : สร้างชนิดข้อมูลสำหรับเก็บค่า โดยลดโค้ดซ้ำ
+
+เลือกยังไง
+enum ใช้เมื่อมีตัวเลือกจำกัด
+ex. status
+    private String status;
+    เราอาจจะเผลอส่งค่าเข้ามาผิด ซึ่ง Java ไม่ฟ้อง error
+    status = "AVAILABLE";
+    status = "available";
+    status = "AVAILBLE"; // สะกดผิด แต่ Java ไม่ฟ้อง
+
+    แก้ด้วย
+    public enum BookStatus {
+        AVAILABLE,
+        BORROWED
+    }
+    เรียกใช้
+    BookStatus status = BookStatus.AVAILABLE;
+
+
+Class ปกติต้องเขียน
+    feild, constructor, getter, toString(), equals(), hashCode()
+
+    แต่ record เขียนแค่
+    public record Author(String name, String country) {
+    }
+
+    ใส่ validate ใน record ได้นะ
+    - สังเกตว่า constructor รูปแบบนี้
+    - ไม่เขียนรายการ parameter ซ้ำ
+    - ไม่ต้องเขียน this.name = name
+    public record Author(String name, String country) {
+
+        public Author {
+            if (name == null || name.isBlank()) {
+                throw new IllegalArgumentException("Author name cannot be blank.");
+            }
+
+            if (country == null || country.isBlank()) {
+                throw new IllegalArgumentException("Country cannot be blank.");
+            }
+        }
+    }
+
+นอกจากนี้ record
+- มี method เพิ่มเองได้
+- implements interface ได้
+- extends class อื่นไม่ได้
+- ถูกสืบทอดต่อไม่ได้ เพราะเป็น final โดยอัตโนมัติ
