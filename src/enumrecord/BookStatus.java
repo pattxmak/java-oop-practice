@@ -2,7 +2,7 @@ package enumrecord;
 
 public enum BookStatus {
 
-    AVALIABLE,
+    AVAILABLE,
     BORROWED
 
 }

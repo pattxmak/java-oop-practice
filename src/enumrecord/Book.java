@@ -4,7 +4,7 @@ public class Book {
 
     private final String title;
     private final Author author;
-    private BookStatus status = BookStatus.AVALIABLE;
+    private BookStatus status = BookStatus.AVAILABLE;
 
 
     public Book(String title, Author author) {
@@ -23,7 +23,7 @@ public class Book {
 
     public void borrow() {
 
-        if (status != BookStatus.AVALIABLE) {
+        if (status != BookStatus.AVAILABLE) {
             System.out.println("Book is not avaliable: " + title);
             return;
         }
@@ -33,12 +33,12 @@ public class Book {
     }
 
     public void returnBook() {
-        if (status == BookStatus.AVALIABLE) {
+        if (status == BookStatus.AVAILABLE) {
             System.out.println("This book has already been returned: " + title);
             return;
         }
 
-        status = BookStatus.AVALIABLE;
+        status = BookStatus.AVAILABLE;
         System.out.println("Returned: " + title);
 
     }
